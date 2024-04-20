@@ -2,12 +2,11 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"runtime"
-
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/mattn/go-sqlite3"
-	"xorm.io/xorm"
+	"github.com/positivelong/xorm"
+	"os"
+	"runtime"
 )
 
 // User describes a user

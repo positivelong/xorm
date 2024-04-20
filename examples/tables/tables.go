@@ -2,10 +2,9 @@ package main
 
 import (
 	"fmt"
-	"os"
-
 	_ "github.com/mattn/go-sqlite3"
-	"xorm.io/xorm"
+	"github.com/positivelong/xorm"
+	"os"
 )
 
 func main() {

@@ -2,13 +2,13 @@ package migrate
 
 import (
 	"fmt"
+	"github.com/positivelong/xorm"
 	"log"
 	"os"
 	"testing"
 
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/stretchr/testify/assert"
-	"xorm.io/xorm"
 )
 
 type Person struct {

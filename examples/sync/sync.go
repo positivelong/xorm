@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
-
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/lib/pq"
 	_ "github.com/mattn/go-sqlite3"
-	"xorm.io/xorm"
+	"github.com/positivelong/xorm"
 )
 
 // SyncUser2 describes a user
