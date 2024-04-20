@@ -7,12 +7,12 @@ package xorm
 import (
 	"database/sql/driver"
 	"fmt"
+	"github.com/positivelong/xorm/core"
 	"reflect"
 	"strings"
 	"time"
 
 	"xorm.io/builder"
-	"xorm.io/core"
 )
 
 func (engine *Engine) buildConds(table *core.Table, bean interface{},

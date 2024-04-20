@@ -7,10 +7,9 @@ package xorm
 import (
 	"container/list"
 	"fmt"
+	"github.com/positivelong/xorm/core"
 	"sync"
 	"time"
-
-	"xorm.io/core"
 )
 
 // LRUCacher implments cache object facilities

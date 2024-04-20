@@ -7,9 +7,9 @@ package xorm
 import (
 	"testing"
 
+	"github.com/positivelong/xorm/core"
 	"github.com/stretchr/testify/assert"
 	"xorm.io/builder"
-	"xorm.io/core"
 )
 
 func TestSetExpr(t *testing.T) {

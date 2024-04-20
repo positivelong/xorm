@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/positivelong/xorm/core"
 	"github.com/stretchr/testify/assert"
-	"xorm.io/core"
 )
 
 func TestDelete(t *testing.T) {

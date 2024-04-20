@@ -8,12 +8,11 @@ import (
 	"crypto/tls"
 	"errors"
 	"fmt"
+	"github.com/positivelong/xorm/core"
 	"regexp"
 	"strconv"
 	"strings"
 	"time"
-
-	"xorm.io/core"
 )
 
 var (

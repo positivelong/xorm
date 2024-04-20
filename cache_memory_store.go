@@ -5,9 +5,8 @@
 package xorm
 
 import (
+	"github.com/positivelong/xorm/core"
 	"sync"
-
-	"xorm.io/core"
 )
 
 var _ core.CacheStore = NewMemoryStore()

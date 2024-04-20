@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"reflect"
 
+	"github.com/positivelong/xorm/core"
 	"xorm.io/builder"
-	"xorm.io/core"
 )
 
 // Exist returns true if the record exist otherwise return false

@@ -5,12 +5,12 @@
 package xorm
 
 import (
+	"github.com/positivelong/xorm/core"
 	"reflect"
 	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"xorm.io/core"
 )
 
 var colStrTests = []struct {

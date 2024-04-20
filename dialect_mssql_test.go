@@ -5,10 +5,9 @@
 package xorm
 
 import (
+	"github.com/positivelong/xorm/core"
 	"reflect"
 	"testing"
-
-	"xorm.io/core"
 )
 
 func TestParseMSSQL(t *testing.T) {

@@ -8,10 +8,9 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	"github.com/positivelong/xorm/core"
 	"regexp"
 	"strings"
-
-	"xorm.io/core"
 )
 
 var (

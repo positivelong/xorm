@@ -5,10 +5,10 @@
 package xorm
 
 import (
+	"github.com/positivelong/xorm/core"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"xorm.io/core"
 )
 
 func TestLRUCache(t *testing.T) {

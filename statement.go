@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/positivelong/xorm/core"
 	"xorm.io/builder"
-	"xorm.io/core"
 )
 
 // Statement save all the sql info for executing SQL

@@ -8,7 +8,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"xorm.io/core"
+	"github.com/positivelong/xorm/core"
 )
 
 type IDGonicMapper struct {

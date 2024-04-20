@@ -7,11 +7,11 @@ package xorm
 import (
 	"errors"
 	"fmt"
+	"github.com/positivelong/xorm/core"
 	"reflect"
 	"strings"
 
 	"xorm.io/builder"
-	"xorm.io/core"
 )
 
 const (

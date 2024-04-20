@@ -1,11 +1,11 @@
 package xorm
 
 import (
+	"github.com/positivelong/xorm/core"
 	"reflect"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"xorm.io/core"
 )
 
 func TestParsePostgres(t *testing.T) {

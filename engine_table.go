@@ -6,10 +6,9 @@ package xorm
 
 import (
 	"fmt"
+	"github.com/positivelong/xorm/core"
 	"reflect"
 	"strings"
-
-	"xorm.io/core"
 )
 
 // tbNameWithSchema will automatically add schema prefix on table name

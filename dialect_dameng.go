@@ -8,12 +8,12 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	"github.com/positivelong/xorm/util"
 	"net/url"
 	"strconv"
 	"strings"
-	"xorm.io/xorm/util"
 
-	"xorm.io/core"
+	"github.com/positivelong/xorm/core"
 )
 
 var (

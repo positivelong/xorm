@@ -10,13 +10,12 @@ package xorm
 import (
 	"context"
 	"fmt"
+	"github.com/positivelong/xorm/core"
 	"os"
 	"reflect"
 	"runtime"
 	"sync"
 	"time"
-
-	"xorm.io/core"
 )
 
 const (

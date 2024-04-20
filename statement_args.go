@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/positivelong/xorm/core"
 	"xorm.io/builder"
-	"xorm.io/core"
 )
 
 func quoteNeeded(a interface{}) bool {

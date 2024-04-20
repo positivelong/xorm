@@ -7,11 +7,10 @@ package xorm
 import (
 	"errors"
 	"fmt"
+	"github.com/positivelong/xorm/core"
 	"net/url"
 	"strconv"
 	"strings"
-
-	"xorm.io/core"
 )
 
 // from http://www.postgresql.org/docs/current/static/sql-keywords-appendix.html
