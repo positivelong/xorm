@@ -11,5 +11,12 @@ require (
 	github.com/stretchr/testify v1.4.0
 	github.com/ziutek/mymysql v1.5.4
 	xorm.io/builder v0.3.6
-	xorm.io/core v0.7.2
+)
+
+require (
+	xorm.io/core v0.0.0-00010101000000-000000000000
+)
+
+replace (
+	xorm.io/core => ./core
 )
