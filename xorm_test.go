@@ -13,6 +13,7 @@ import (
 	"strings"
 	"testing"
 
+	_ "gitee.com/travelliu/dm"
 	_ "github.com/denisenkom/go-mssqldb"
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/lib/pq"
@@ -192,4 +193,11 @@ func TestPing(t *testing.T) {
 	if err := testEngine.Ping(); err != nil {
 		t.Fatal(err)
 	}
+	//e, err := NewEngineGroup("dameng", "dameng://SYSDBA:SYSDBA@127.0.0.1:5327")
+	//if err != nil {
+	//	println("err:", err)
+	//	return
+	//}
+	//err = e.Ping()
+	//fmt.Println(err)
 }

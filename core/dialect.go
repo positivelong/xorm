@@ -325,3 +325,61 @@ func QueryDialect(dbName DbType) Dialect {
 	}
 	return nil
 }
+
+// ColumnString generate column description string according dialect
+func ColumnString(dialect Dialect, col *Column, includePrimaryKey bool) (string, error) {
+	bd := strings.Builder{}
+
+	if _, err := bd.WriteString(dialect.Quote(col.Name)); err != nil {
+		return "", err
+	}
+
+	if err := bd.WriteByte(' '); err != nil {
+		return "", err
+	}
+
+	if _, err := bd.WriteString(dialect.SqlType(col)); err != nil {
+		return "", err
+	}
+
+	if includePrimaryKey && col.IsPrimaryKey {
+		if _, err := bd.WriteString(" PRIMARY KEY"); err != nil {
+			return "", err
+		}
+		if col.IsAutoIncrement {
+			if err := bd.WriteByte(' '); err != nil {
+				return "", err
+			}
+			if _, err := bd.WriteString(dialect.AutoIncrStr()); err != nil {
+				return "", err
+			}
+		}
+	}
+
+	if !col.DefaultIsEmpty {
+		if _, err := bd.WriteString(" DEFAULT "); err != nil {
+			return "", err
+		}
+		if col.Default == "" {
+			if _, err := bd.WriteString("''"); err != nil {
+				return "", err
+			}
+		} else {
+			if _, err := bd.WriteString(col.Default); err != nil {
+				return "", err
+			}
+		}
+	}
+
+	if col.Nullable {
+		if _, err := bd.WriteString(" NULL"); err != nil {
+			return "", err
+		}
+	} else {
+		if _, err := bd.WriteString(" NOT NULL"); err != nil {
+			return "", err
+		}
+	}
+
+	return bd.String(), nil
+}

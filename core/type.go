@@ -32,6 +32,8 @@ const (
 	BLOB_TYPE
 	TIME_TYPE
 	NUMERIC_TYPE
+	ARRAY_TYPE
+	BOOL_TYPE
 )
 
 func (s *SQLType) IsType(st int) bool {
@@ -57,18 +59,24 @@ func (s *SQLType) IsNumeric() bool {
 	return s.IsType(NUMERIC_TYPE)
 }
 
+func (s *SQLType) IsBool() bool { return s.IsType(BOOL_TYPE) }
+
 func (s *SQLType) IsJson() bool {
 	return s.Name == Json || s.Name == Jsonb
 }
 
 var (
-	Bit       = "BIT"
-	TinyInt   = "TINYINT"
-	SmallInt  = "SMALLINT"
-	MediumInt = "MEDIUMINT"
-	Int       = "INT"
-	Integer   = "INTEGER"
-	BigInt    = "BIGINT"
+	Bit             = "BIT"
+	UnsignedBit     = "UNSIGNED BIT"
+	TinyInt         = "TINYINT"
+	UnsignedTinyInt = "UNSIGNED TINYINT"
+	SmallInt        = "SMALLINT"
+	MediumInt       = "MEDIUMINT"
+	Int             = "INT"
+	UnsignedInt     = "UNSIGNED INT"
+	Integer         = "INTEGER"
+	BigInt          = "BIGINT"
+	UnsignedBigInt  = "UNSIGNED BIGINT"
 
 	Enum = "ENUM"
 	Set  = "SET"
@@ -122,13 +130,17 @@ var (
 	Jsonb = "JSONB"
 
 	SqlTypes = map[string]int{
-		Bit:       NUMERIC_TYPE,
-		TinyInt:   NUMERIC_TYPE,
-		SmallInt:  NUMERIC_TYPE,
-		MediumInt: NUMERIC_TYPE,
-		Int:       NUMERIC_TYPE,
-		Integer:   NUMERIC_TYPE,
-		BigInt:    NUMERIC_TYPE,
+		Bit:             NUMERIC_TYPE,
+		UnsignedBit:     NUMERIC_TYPE,
+		TinyInt:         NUMERIC_TYPE,
+		UnsignedTinyInt: NUMERIC_TYPE,
+		SmallInt:        NUMERIC_TYPE,
+		MediumInt:       NUMERIC_TYPE,
+		Int:             NUMERIC_TYPE,
+		UnsignedInt:     NUMERIC_TYPE,
+		Integer:         NUMERIC_TYPE,
+		BigInt:          NUMERIC_TYPE,
+		UnsignedBigInt:  NUMERIC_TYPE,
 
 		Enum:  TEXT_TYPE,
 		Set:   TEXT_TYPE,
@@ -174,7 +186,8 @@ var (
 		Bytea:            BLOB_TYPE,
 		UniqueIdentifier: BLOB_TYPE,
 
-		Bool: NUMERIC_TYPE,
+		Bool:    BOOL_TYPE,
+		Boolean: BOOL_TYPE,
 
 		Serial:    NUMERIC_TYPE,
 		BigSerial: NUMERIC_TYPE,
@@ -262,10 +275,14 @@ var (
 // Type2SQLType generate SQLType acorrding Go's type
 func Type2SQLType(t reflect.Type) (st SQLType) {
 	switch k := t.Kind(); k {
-	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32:
+	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32:
 		st = SQLType{Int, 0, 0}
-	case reflect.Int64, reflect.Uint64:
+	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32:
+		st = SQLType{UnsignedInt, 0, 0}
+	case reflect.Int64:
 		st = SQLType{BigInt, 0, 0}
+	case reflect.Uint64:
+		st = SQLType{UnsignedBigInt, 0, 0}
 	case reflect.Float32:
 		st = SQLType{Float, 0, 0}
 	case reflect.Float64:
@@ -305,6 +322,10 @@ func SQLType2Type(st SQLType) reflect.Type {
 		return reflect.TypeOf(1)
 	case BigInt, BigSerial:
 		return reflect.TypeOf(int64(1))
+	case UnsignedBit, UnsignedTinyInt, UnsignedInt:
+		return UintType
+	case UnsignedBigInt:
+		return Uint64Type
 	case Float, Real:
 		return reflect.TypeOf(float32(1))
 	case Double:

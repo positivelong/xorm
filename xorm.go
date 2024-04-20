@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+//go:build go1.8
 // +build go1.8
 
 package xorm
@@ -38,6 +39,7 @@ func regDrvsNDialects() bool {
 		"sqlite3":  {"sqlite3", func() core.Driver { return &sqlite3Driver{} }, func() core.Dialect { return &sqlite3{} }},
 		"oci8":     {"oracle", func() core.Driver { return &oci8Driver{} }, func() core.Dialect { return &oracle{} }},
 		"goracle":  {"oracle", func() core.Driver { return &goracleDriver{} }, func() core.Dialect { return &oracle{} }},
+		"dameng":   {"dameng", func() core.Driver { return &damengDriver{} }, func() core.Dialect { return &dameng{} }},
 	}
 
 	for driverName, v := range providedDrvsNDialects {
