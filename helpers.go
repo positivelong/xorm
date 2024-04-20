@@ -12,7 +12,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/positivelong/xorm/core"
+	"xorm.io/xorm/core"
 )
 
 // str2PK convert string value to primary key value according to tp

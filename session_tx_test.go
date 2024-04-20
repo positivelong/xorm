@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/positivelong/xorm/core"
+	"xorm.io/xorm/core"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	_ "github.com/mattn/go-sqlite3"
-	"github.com/positivelong/xorm"
 	"os"
 	"time"
+	"xorm.io/xorm"
 )
 
 // User describes a user

@@ -7,7 +7,7 @@ package xorm
 import (
 	"errors"
 	"fmt"
-	"github.com/positivelong/xorm/core"
+	"xorm.io/xorm/core"
 	"net/url"
 	"strconv"
 	"strings"

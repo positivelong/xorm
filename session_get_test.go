@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/positivelong/xorm/core"
 	"github.com/stretchr/testify/assert"
+	"xorm.io/xorm/core"
 )
 
 func TestGetVar(t *testing.T) {

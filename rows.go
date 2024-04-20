@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/positivelong/xorm/core"
+	"xorm.io/xorm/core"
 )
 
 // Rows rows wrapper a rows to

@@ -3,7 +3,7 @@ package migrate
 import (
 	"errors"
 	"fmt"
-	"github.com/positivelong/xorm"
+	"xorm.io/xorm"
 )
 
 // MigrateFunc is the func signature for migrating.

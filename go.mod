@@ -1,4 +1,4 @@
-module github.com/positivelong/xorm
+module xorm.io/xorm
 
 go 1.18
 

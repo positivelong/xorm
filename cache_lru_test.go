@@ -5,7 +5,7 @@
 package xorm
 
 import (
-	"github.com/positivelong/xorm/core"
+	"xorm.io/xorm/core"
 	"testing"
 
 	"github.com/stretchr/testify/assert"

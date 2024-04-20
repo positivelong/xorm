@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/positivelong/xorm"
 	"os"
+	"xorm.io/xorm"
 
 	_ "github.com/mattn/go-sqlite3"
 )

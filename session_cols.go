@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/positivelong/xorm/core"
+	"xorm.io/xorm/core"
 )
 
 func setColumnInt(bean interface{}, col *core.Column, t int64) {

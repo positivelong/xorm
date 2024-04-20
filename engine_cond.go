@@ -7,7 +7,7 @@ package xorm
 import (
 	"database/sql/driver"
 	"fmt"
-	"github.com/positivelong/xorm/core"
+	"xorm.io/xorm/core"
 	"reflect"
 	"strings"
 	"time"

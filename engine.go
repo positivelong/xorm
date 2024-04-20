@@ -12,7 +12,7 @@ import (
 	"encoding/gob"
 	"errors"
 	"fmt"
-	"github.com/positivelong/xorm/core"
+	"xorm.io/xorm/core"
 	"io"
 	"os"
 	"reflect"

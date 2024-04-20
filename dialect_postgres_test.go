@@ -1,7 +1,7 @@
 package xorm
 
 import (
-	"github.com/positivelong/xorm/core"
+	"xorm.io/xorm/core"
 	"reflect"
 	"testing"
 

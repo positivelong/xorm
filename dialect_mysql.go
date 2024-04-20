@@ -8,7 +8,7 @@ import (
 	"crypto/tls"
 	"errors"
 	"fmt"
-	"github.com/positivelong/xorm/core"
+	"xorm.io/xorm/core"
 	"regexp"
 	"strconv"
 	"strings"

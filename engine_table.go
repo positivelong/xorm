@@ -6,7 +6,7 @@ package xorm
 
 import (
 	"fmt"
-	"github.com/positivelong/xorm/core"
+	"xorm.io/xorm/core"
 	"reflect"
 	"strings"
 )

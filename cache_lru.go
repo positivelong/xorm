@@ -7,7 +7,7 @@ package xorm
 import (
 	"container/list"
 	"fmt"
-	"github.com/positivelong/xorm/core"
+	"xorm.io/xorm/core"
 	"sync"
 	"time"
 )

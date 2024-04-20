@@ -9,7 +9,7 @@ import (
 	"io"
 	"log"
 
-	"github.com/positivelong/xorm/core"
+	"xorm.io/xorm/core"
 )
 
 // default log options

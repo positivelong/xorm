@@ -2,10 +2,10 @@ package migrate
 
 import (
 	"fmt"
-	"github.com/positivelong/xorm"
 	"log"
 	"os"
 	"testing"
+	"xorm.io/xorm"
 
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/stretchr/testify/assert"

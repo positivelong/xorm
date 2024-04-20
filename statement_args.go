@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/positivelong/xorm/core"
+	"xorm.io/xorm/core"
 	"xorm.io/builder"
 )
 

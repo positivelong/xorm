@@ -9,8 +9,8 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/positivelong/xorm/core"
 	"xorm.io/builder"
+	"xorm.io/xorm/core"
 )
 
 func (session *Session) queryPreprocess(sqlStr *string, paramStr ...interface{}) {

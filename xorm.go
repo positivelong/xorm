@@ -10,7 +10,7 @@ package xorm
 import (
 	"context"
 	"fmt"
-	"github.com/positivelong/xorm/core"
+	"xorm.io/xorm/core"
 	"os"
 	"reflect"
 	"runtime"

@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"log/syslog"
 
-	"github.com/positivelong/xorm/core"
+	"xorm.io/xorm/core"
 )
 
 var _ core.ILogger = &SyslogLogger{}
