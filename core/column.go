@@ -65,7 +65,7 @@ func NewColumn(name, fieldName string, sqlType SQLType, len1, len2 int, nullable
 		IsDeleted:       false,
 		IsCascade:       false,
 		IsVersion:       false,
-		DefaultIsEmpty:  false,
+		DefaultIsEmpty:  true, // default should be no default
 		EnumOptions:     make(map[string]int),
 		Comment:         "",
 	}
