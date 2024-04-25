@@ -730,9 +730,9 @@ and ucc.column_name=atc.column_name and atc.owner = ucc.owner where atc.table_na
 		}
 
 		switch dt {
-		case "VARCHAR2":
-			col.SQLType = core.SQLType{Name: "VARCHAR2", DefaultLength: len1, DefaultLength2: len2}
-		case "VARCHAR":
+		//case :
+		//	col.SQLType = core.SQLType{Name: "VARCHAR2", DefaultLength: len1, DefaultLength2: len2}
+		case "VARCHAR", "VARCHAR2":
 			col.SQLType = core.SQLType{Name: core.Varchar, DefaultLength: len1, DefaultLength2: len2}
 		case "TIMESTAMP WITH TIME ZONE":
 			col.SQLType = core.SQLType{Name: core.TimeStampz, DefaultLength: 0, DefaultLength2: 0}

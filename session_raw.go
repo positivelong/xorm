@@ -7,6 +7,7 @@ package xorm
 import (
 	"database/sql"
 	"reflect"
+	"strings"
 	"time"
 
 	"xorm.io/builder"
@@ -77,7 +78,8 @@ func (session *Session) queryRows(sqlStr string, args ...interface{}) (*core.Row
 		}
 		return rows, nil
 	}
-
+	sqlStr = strings.ReplaceAll(sqlStr, `"login"`, "'login'")
+	sqlStr = strings.ReplaceAll(sqlStr, `login=?`, `'login'=?`)
 	rows, err := session.tx.QueryContext(session.ctx, sqlStr, args...)
 	if err != nil {
 		return nil, err
