@@ -628,8 +628,8 @@ func (db *dameng) DropIndexSql(tableName string, index *core.Index) string {
 }*/
 
 func (db *dameng) TableCheckSql(tableName string) (string, []any) {
-	args := []any{tableName}
-	sql := "SELECT table_name FROM user_tables WHERE temporary = 'N' AND table_name = ?"
+	args := []any{tableName, db.Schema}
+	sql := "SELECT table_name FROM all_tables WHERE temporary = 'N' AND table_name = ? and owner = ?"
 	return sql, args
 }
 
