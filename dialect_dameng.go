@@ -8,10 +8,10 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"xorm.io/xorm/util"
 	"net/url"
 	"strconv"
 	"strings"
+	"xorm.io/xorm/util"
 
 	"xorm.io/xorm/core"
 )
@@ -611,6 +611,16 @@ func (db *dameng) IndexCheckSql(tableName, idxName string) (string, []any) {
 		`WHERE TABLE_NAME = ? AND INDEX_NAME = ?`, args
 }
 
+func (db *dameng) DropIndexSql(tableName string, index *core.Index) string {
+	var name string
+	if index.IsRegular {
+		name = index.XName(tableName)
+	} else {
+		name = index.Name
+	}
+	return fmt.Sprintf("DROP INDEX %v.%s", db.Quote(name), db.Quote(tableName))
+}
+
 /*func (db *dameng) ColumnCheckSql(tableName, colName string) (string, []any) {
 	args := []any{db.DbName, tableName, colName}
 	sql := "SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? AND `COLUMN_NAME` = ?"
@@ -624,10 +634,8 @@ func (db *dameng) TableCheckSql(tableName string) (string, []any) {
 }
 
 func (db *dameng) GetColumns(tableName string) ([]string, map[string]*core.Column, error) {
-	s := `select   column_name   from   user_cons_columns
-	where   constraint_name   =   (select   constraint_name   from   user_constraints
-			  where   table_name   =   ?  and   constraint_type   ='P')`
-	rows, err := db.DB().Query(s, tableName)
+	s := `select column_name from user_cons_columns where owner = ? and constraint_name = (select constraint_name from user_constraints where owner = ? and table_name = ? and constraint_type ='P')`
+	rows, err := db.DB().Query(s, db.Schema, db.Schema, tableName)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -647,14 +655,10 @@ func (db *dameng) GetColumns(tableName string) ([]string, map[string]*core.Colum
 	}
 	rows.Close()
 
-	s = `SELECT USER_TAB_COLS.COLUMN_NAME, USER_TAB_COLS.DATA_DEFAULT, USER_TAB_COLS.DATA_TYPE, USER_TAB_COLS.DATA_LENGTH,
-		USER_TAB_COLS.data_precision, USER_TAB_COLS.data_scale, USER_TAB_COLS.NULLABLE,
-		user_col_comments.comments
-		FROM USER_TAB_COLS
-		LEFT JOIN user_col_comments on user_col_comments.TABLE_NAME=USER_TAB_COLS.TABLE_NAME
-		AND user_col_comments.COLUMN_NAME=USER_TAB_COLS.COLUMN_NAME
-		WHERE USER_TAB_COLS.table_name = ?`
-	rows, err = db.DB().Query(s, tableName)
+	s = `select atc.column_name, atc.data_default, atc.data_type, atc.data_length, atc.data_precision, atc.data_scale, 
+atc.nullable, ucc.comments from all_tab_cols as atc left join user_col_comments as ucc on ucc.table_name=atc.table_name 
+and ucc.column_name=atc.column_name and atc.owner = ucc.owner where atc.table_name = ? and ucc.owner = ?;`
+	rows, err = db.DB().Query(s, tableName, db.Schema)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -698,7 +702,7 @@ func (db *dameng) GetColumns(tableName string) ([]string, map[string]*core.Colum
 		}
 		if IndexSlice(pkNames, col.Name) > -1 {
 			col.IsPrimaryKey = true
-			has, err := db.HasRecords("SELECT * FROM USER_SEQUENCES WHERE SEQUENCE_NAME = ?", SeqName(tableName))
+			has, err := db.HasRecords("SELECT * FROM ALL_SEQUENCES WHERE SEQUENCE_OWNER = ? AND SEQUENCE_NAME = ?", db.Schema, SeqName(tableName))
 			if err != nil {
 				return nil, nil, err
 			}
@@ -776,8 +780,8 @@ func (db *dameng) GetColumns(tableName string) ([]string, map[string]*core.Colum
 }
 
 func (db *dameng) GetTables() ([]*core.Table, error) {
-	s := "SELECT table_name FROM user_tables WHERE temporary = 'N' AND table_name NOT LIKE ?"
-	args := []interface{}{strings.ToUpper(db.Uri.User), "%$%"}
+	s := "select table_name from all_tables where owner = ? and temporary = 'N' AND table_name NOT LIKE ?"
+	args := []interface{}{db.Schema, "%$%"}
 	rows, err := db.DB().Query(s, args...)
 	if err != nil {
 		return nil, err
@@ -801,10 +805,11 @@ func (db *dameng) GetTables() ([]*core.Table, error) {
 }
 
 func (db *dameng) GetIndexes(tableName string) (map[string]*core.Index, error) {
-	args := []interface{}{tableName, tableName}
-	s := "SELECT t.column_name,i.uniqueness,i.index_name FROM user_ind_columns t,user_indexes i " +
-		"WHERE t.index_name = i.index_name and t.table_name = i.table_name and t.table_name =?" +
-		" AND t.index_name not in (SELECT index_name FROM ALL_CONSTRAINTS WHERE CONSTRAINT_TYPE='P' AND table_name = ?)"
+	args := []interface{}{tableName, db.Schema, tableName, db.Schema}
+	s := `select t.column_name, i.uniqueness, i.index_name FROM all_ind_columns t left join all_indexes i on 
+t.table_name = i.table_name and i.table_owner = t.table_owner and t.index_name = i.index_name WHERE 
+t.table_name = ? and i.owner = ? and t.index_name not in (select index_name from all_constraints where 
+constraint_type='P' and table_name = ? and owner = ?);`
 
 	rows, err := db.DB().Query(s, args...)
 	if err != nil {
@@ -949,13 +954,14 @@ func (p *damengDriver) Parse(driverName, dataSourceName string) (*core.Uri, erro
 		dbName = u.User.Username()
 	}
 	return &core.Uri{
-		DbType: "dameng",
+		DbType: core.DM,
 		Proto:  u.Scheme,
 		Host:   u.Hostname(),
 		Port:   u.Port(),
 		DbName: dbName,
 		User:   u.User.Username(),
 		Passwd: passwd,
+		Schema: dbName,
 	}, nil
 }
 
