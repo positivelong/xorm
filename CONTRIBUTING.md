@@ -1,6 +1,7 @@
 ## Contributing to xorm
 
-`xorm` has a backlog of [pull requests](https://help.github.com/articles/using-pull-requests), but contributions are still very
+`xorm` has a backlog of [pull requests](https://help.github.com/articles/using-pull-requests), but contributions are
+still very
 much welcome. You can help with patch review, submitting bug reports,
 or adding new functionality. There is no formal style guide, but
 please conform to the style of existing code and general Go formatting
@@ -11,9 +12,11 @@ conventions when submitting patches.
 
 ### Language
 
-Since `xorm` is a world-wide open source project, please describe your issues or code changes in English as soon as possible.
+Since `xorm` is a world-wide open source project, please describe your issues or code changes in English as soon as
+possible.
 
 ### Sign your codes with comments
+
 ```
 // !<you github id>! your comments
 
@@ -24,7 +27,8 @@ e.g.,
 
 ### Patch review
 
-Help review existing open [pull requests](https://help.github.com/articles/using-pull-requests) by commenting on the code or
+Help review existing open [pull requests](https://help.github.com/articles/using-pull-requests) by commenting on the
+code or
 proposed functionality.
 
 ### Bug reports
@@ -32,7 +36,8 @@ proposed functionality.
 We appreciate any bug reports, but especially ones with self-contained
 (doesn't depend on code outside of xorm), minimal (can't be simplified
 further) test cases. It's especially helpful if you can submit a pull
-request with just the failing test case(you can find some example test file like [session_get_test.go](https://gitea.com/xorm/xorm/src/branch/master/session_get_test.go)).
+request with just the failing test case(you can find some example test file
+like [session_get_test.go](https://gitea.com/xorm/xorm/src/branch/master/session_get_test.go)).
 
 If you implements a new database interface, you maybe need to add a test_<databasename>.sh file.
 For example, [mysql_test.go](https://gitea.com/xorm/xorm/src/branch/master/test_mysql.sh)

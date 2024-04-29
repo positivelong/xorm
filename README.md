@@ -104,7 +104,8 @@ engineGroup, err := xorm.NewEngineGroup(masterEngine, []*Engine{slave1Engine, sl
 
 Then all place where `engine` you can just use `engineGroup`.
 
-* `Query` runs a SQL string, the returned results is `[]map[string][]byte`, `QueryString` returns `[]map[string]string`, `QueryInterface` returns `[]map[string]interface{}`.
+* `Query` runs a SQL string, the returned results is `[]map[string][]byte`, `QueryString`
+  returns `[]map[string]string`, `QueryInterface` returns `[]map[string]interface{}`.
 
 ```Go
 results, err := engine.Query("select * from user")
@@ -242,7 +243,8 @@ for rows.Next() {
 }
 ```
 
-* `Update` update one or more records, default will update non-empty and non-zero fields except when you use Cols, AllCols and so on.
+* `Update` update one or more records, default will update non-empty and non-zero fields except when you use Cols,
+  AllCols and so on.
 
 ```Go
 affected, err := engine.ID(1).Update(&user)
@@ -388,7 +390,8 @@ res, err := engine.Transaction(func(session *xorm.Session) (interface{}, error) 
 })
 ```
 
-* Context Cache, if enabled, current query result will be cached on session and be used by next same statement on the same session.
+* Context Cache, if enabled, current query result will be cached on session and be used by next same statement on the
+  same session.
 
 ```Go
 	sess := engine.NewSession()
@@ -419,7 +422,8 @@ res, err := engine.Transaction(func(session *xorm.Session) (interface{}, error) 
 
 ## Contributing
 
-If you want to pull request, please see [CONTRIBUTING](https://gitea.com/xorm/xorm/src/branch/master/CONTRIBUTING.md). And we also provide [Xorm on Google Groups](https://groups.google.com/forum/#!forum/xorm) to discuss.
+If you want to pull request, please see [CONTRIBUTING](https://gitea.com/xorm/xorm/src/branch/master/CONTRIBUTING.md).
+And we also provide [Xorm on Google Groups](https://groups.google.com/forum/#!forum/xorm) to discuss.
 
 ## Credits
 
@@ -436,7 +440,8 @@ Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com
 
 ### Sponsors
 
-Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/xorm#sponsor)]
+Support this project by becoming a sponsor. Your logo will show up here with a link to your
+website. [[Become a sponsor](https://opencollective.com/xorm#sponsor)]
 
 ## Changelog
 
@@ -478,7 +483,8 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 
 * [Docker.cn](https://docker.cn/)
 
-* [Xorm Adapter](https://github.com/casbin/xorm-adapter) for [Casbin](https://github.com/casbin/casbin) - [github.com/casbin/xorm-adapter](https://github.com/casbin/xorm-adapter)
+* [Xorm Adapter](https://github.com/casbin/xorm-adapter)
+  for [Casbin](https://github.com/casbin/casbin) - [github.com/casbin/xorm-adapter](https://github.com/casbin/xorm-adapter)
 
 * [Gorevel](http://gorevel.cn/) - [github.com/goofcc/gorevel](http://github.com/goofcc/gorevel)
 

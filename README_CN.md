@@ -104,7 +104,8 @@ engineGroup, err := xorm.NewEngineGroup(masterEngine, []*Engine{slave1Engine, sl
 
 所有使用 `engine` 都可以简单的用 `engineGroup` 来替换。
 
-* `Query` 最原始的也支持SQL语句查询，返回的结果类型为 []map[string][]byte。`QueryString` 返回 []map[string]string, `QueryInterface` 返回 `[]map[string]interface{}`.
+* `Query` 最原始的也支持SQL语句查询，返回的结果类型为 []map[string][]byte。`QueryString` 返回 []map[string]
+  string, `QueryInterface` 返回 `[]map[string]interface{}`.
 
 ```Go
 results, err := engine.Query("select * from user")
@@ -412,7 +413,8 @@ res, err := engine.Transaction(func(session *xorm.Session) (interface{}, error) 
 
 ## 贡献
 
-如果您也想为Xorm贡献您的力量，请查看 [CONTRIBUTING](https://gitea.com/xorm/xorm/src/branch/master/CONTRIBUTING.md)。您也可以加入QQ群  技术帮助和讨论。
+如果您也想为Xorm贡献您的力量，请查看 [CONTRIBUTING](https://gitea.com/xorm/xorm/src/branch/master/CONTRIBUTING.md)
+。您也可以加入QQ群 技术帮助和讨论。
 群一：280360085 （已满）
 群二：795010183
 
@@ -431,7 +433,8 @@ res, err := engine.Transaction(func(session *xorm.Session) (interface{}, error) 
 
 ### Sponsors
 
-成为 sponsor 来支持 xorm。您的 logo 将会被显示并被链接到您的网站。 [[成为 sponsor](https://opencollective.com/xorm#sponsor)]
+成为 sponsor 来支持 xorm。您的 logo
+将会被显示并被链接到您的网站。 [[成为 sponsor](https://opencollective.com/xorm#sponsor)]
 
 # 案例
 
@@ -449,7 +452,8 @@ res, err := engine.Transaction(func(session *xorm.Session) (interface{}, error) 
 
 * [Docker.cn](https://docker.cn/)
 
-* [Xorm Adapter](https://github.com/casbin/xorm-adapter) for [Casbin](https://github.com/casbin/casbin) - [github.com/casbin/xorm-adapter](https://github.com/casbin/xorm-adapter)
+* [Xorm Adapter](https://github.com/casbin/xorm-adapter)
+  for [Casbin](https://github.com/casbin/casbin) - [github.com/casbin/xorm-adapter](https://github.com/casbin/xorm-adapter)
 
 * [Gowalker](http://gowalker.org) - [github.com/Unknwon/gowalker](http://github.com/Unknwon/gowalker)
 
@@ -466,7 +470,6 @@ res, err := engine.Transaction(func(session *xorm.Session) (interface{}, error) 
 * [GoBBS - gobbs.domolo.com](http://gobbs.domolo.com/)
 
 * [go-blog](http://wangcheng.me) - [github.com/easykoo/go-blog](https://github.com/easykoo/go-blog)
-
 
 ## 更新日志
 
@@ -487,7 +490,7 @@ res, err := engine.Transaction(func(session *xorm.Session) (interface{}, error) 
     * 自动读写分离支持
     * Query/QueryString/QueryInterface 支持与 Where/And 合用
     * `Get` 支持获取非结构体变量
-    * `Iterate` 支持 `BufferSize` 
+    * `Iterate` 支持 `BufferSize`
     * 修正部分Bug
 
 [更多更新日志...](https://github.com/go-xorm/manual-zh-CN/tree/master/chapter-16)
