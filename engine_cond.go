@@ -10,9 +10,9 @@ import (
 	"reflect"
 	"strings"
 	"time"
+	"xorm.io/xorm/core"
 
 	"xorm.io/builder"
-	"xorm.io/core"
 )
 
 func (engine *Engine) buildConds(table *core.Table, bean interface{},

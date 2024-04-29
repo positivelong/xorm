@@ -13,7 +13,7 @@ import (
 	"strings"
 
 	"xorm.io/builder"
-	"xorm.io/core"
+	"xorm.io/xorm/core"
 )
 
 // ErrNoElementsOnSlice represents an error there is no element when insert
@@ -368,7 +368,7 @@ func (session *Session) innerInsert(bean interface{}) (int64, error) {
 	}
 
 	if len(colPlaces) <= 0 {
-		if session.engine.dialect.DBType() == core.MYSQL {
+		if session.engine.dialect.DBType() == core.MYSQL || session.engine.dialect.DBType() == core.DM {
 			if _, err := buf.WriteString(" VALUES ()"); err != nil {
 				return 0, err
 			}
@@ -381,8 +381,11 @@ func (session *Session) innerInsert(bean interface{}) (int64, error) {
 		if _, err := buf.WriteString(" ("); err != nil {
 			return 0, err
 		}
-
-		if err := writeStrings(buf, append(colNames, exprs.colNames...), "`", "`"); err != nil {
+		quote := "`"
+		if session.engine.dialect.DBType() == core.DM {
+			quote = `"`
+		}
+		if err := writeStrings(buf, append(colNames, exprs.colNames...), quote, quote); err != nil {
 			return 0, err
 		}
 

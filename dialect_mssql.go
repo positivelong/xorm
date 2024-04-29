@@ -10,8 +10,7 @@ import (
 	"net/url"
 	"strconv"
 	"strings"
-
-	"xorm.io/core"
+	"xorm.io/xorm/core"
 )
 
 var (

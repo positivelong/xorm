@@ -10,8 +10,7 @@ import (
 	"fmt"
 	"regexp"
 	"strings"
-
-	"xorm.io/core"
+	"xorm.io/xorm/core"
 )
 
 var (

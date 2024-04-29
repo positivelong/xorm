@@ -9,8 +9,7 @@ import (
 	"fmt"
 	"sync"
 	"time"
-
-	"xorm.io/core"
+	"xorm.io/xorm/core"
 )
 
 // LRUCacher implments cache object facilities

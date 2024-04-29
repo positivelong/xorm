@@ -3,9 +3,9 @@ package xorm
 import (
 	"reflect"
 	"testing"
+	"xorm.io/xorm/core"
 
 	"github.com/stretchr/testify/assert"
-	"xorm.io/core"
 )
 
 func TestParsePostgres(t *testing.T) {

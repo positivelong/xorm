@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"xorm.io/core"
+	"xorm.io/xorm/core"
 )
 
 type TestTableNameStruct struct{}

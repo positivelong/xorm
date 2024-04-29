@@ -7,10 +7,11 @@ package xorm
 import (
 	"database/sql"
 	"reflect"
+	"strings"
 	"time"
 
 	"xorm.io/builder"
-	"xorm.io/core"
+	"xorm.io/xorm/core"
 )
 
 func (session *Session) queryPreprocess(sqlStr *string, paramStr ...interface{}) {
@@ -27,7 +28,7 @@ func (session *Session) queryRows(sqlStr string, args ...interface{}) (*core.Row
 
 	session.queryPreprocess(&sqlStr, args...)
 
-	if session.showSQL {
+	if true {
 		session.lastSQL = sqlStr
 		session.lastSQLArgs = args
 		if session.engine.showExecTime {
@@ -77,7 +78,8 @@ func (session *Session) queryRows(sqlStr string, args ...interface{}) (*core.Row
 		}
 		return rows, nil
 	}
-
+	sqlStr = strings.ReplaceAll(sqlStr, `"login"`, "'login'")
+	sqlStr = strings.ReplaceAll(sqlStr, `login=?`, `'login'=?`)
 	rows, err := session.tx.QueryContext(session.ctx, sqlStr, args...)
 	if err != nil {
 		return nil, err

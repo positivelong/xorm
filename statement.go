@@ -12,7 +12,7 @@ import (
 	"time"
 
 	"xorm.io/builder"
-	"xorm.io/core"
+	"xorm.io/xorm/core"
 )
 
 // Statement save all the sql info for executing SQL

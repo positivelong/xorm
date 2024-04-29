@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"xorm.io/core"
+	"xorm.io/xorm/core"
 )
 
 type tagContext struct {

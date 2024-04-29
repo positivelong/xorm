@@ -6,13 +6,14 @@ package xorm
 
 import (
 	"fmt"
+	"gitee.com/travelliu/dm"
 	"reflect"
 	"strconv"
 	"strings"
 	"time"
 
 	"xorm.io/builder"
-	"xorm.io/core"
+	"xorm.io/xorm/core"
 )
 
 func (session *Session) genQuerySQL(sqlOrArgs ...interface{}) (string, []interface{}, error) {
@@ -125,6 +126,13 @@ func value2String(rawValue *reflect.Value) (str string, err error) {
 		str = strconv.FormatBool(vv.Bool())
 	case reflect.Complex128, reflect.Complex64:
 		str = fmt.Sprintf("%v", vv.Complex())
+	case reflect.Pointer:
+		clob, ok := (*rawValue).Interface().(*dm.DmClob)
+		if !ok {
+			err = fmt.Errorf("Unsupported struct type pointer %v", *rawValue)
+		}
+		size, _ := clob.GetLength()
+		str, _ = clob.ReadString(1, int(size))
 	/* TODO: unsupported types below
 	   case reflect.Map:
 	   case reflect.Ptr:

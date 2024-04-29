@@ -12,8 +12,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
-	"xorm.io/core"
+	"xorm.io/xorm/core"
 )
 
 var (

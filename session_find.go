@@ -9,9 +9,9 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"xorm.io/xorm/core"
 
 	"xorm.io/builder"
-	"xorm.io/core"
 )
 
 const (

@@ -7,7 +7,7 @@ package xorm
 import (
 	"reflect"
 
-	"xorm.io/core"
+	"xorm.io/xorm/core"
 )
 
 var (

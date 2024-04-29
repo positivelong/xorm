@@ -10,8 +10,7 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
-
-	"xorm.io/core"
+	"xorm.io/xorm/core"
 )
 
 var (
