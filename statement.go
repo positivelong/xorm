@@ -330,7 +330,11 @@ func (statement *Statement) buildUpdates(bean interface{},
 			if err != nil {
 				engine.logger.Error(err)
 			} else {
-				val = data
+				if col.SQLType.IsText() {
+					val = string(data)
+				} else {
+					val = data
+				}
 			}
 			goto APPEND
 		}
