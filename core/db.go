@@ -83,6 +83,9 @@ type DB struct {
 
 // Open opens a database
 func Open(driverName, dataSourceName string) (*DB, error) {
+	if driverName == "oceanbase" {
+		driverName = "mysql"
+	}
 	db, err := sql.Open(driverName, dataSourceName)
 	if err != nil {
 		return nil, err
